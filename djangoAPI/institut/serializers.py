@@ -1,5 +1,6 @@
 #ce fichier permet de traduire les variables des classes en Json 
 
+from django.contrib.auth.models import Group, User
 from django.db.models import fields
 from rest_framework import serializers
 from .models import Absence, Enregistrement, Enseignant, Etudiant, Groupe, Module, Seance, trav_a_rendre
@@ -49,3 +50,14 @@ class TarSerializer(serializers.ModelSerializer):
         model= trav_a_rendre
         fields=('id','idMod','titre','date_lance','nature','evaluation',
         'description','DDL','Attach_Enonce','Attach_Rendu','etat')
+
+class UserSerializer(serializers.HyperlinkedModelSerializer):
+    class Meta:
+        model = User
+        fields = ['url', 'username', 'email', 'groups']
+
+
+class GroupSerializer(serializers.HyperlinkedModelSerializer):
+    class Meta:
+        model = Group
+        fields = ['url', 'name']

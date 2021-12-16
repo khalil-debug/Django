@@ -4,8 +4,14 @@ from institut import views
 from django.conf import settings
 
 urlpatterns=[
-    path('etudiant/', views.GroupeAPI),
-    path('etudiant/([0-9]+)', views.GroupeAPI),
-
+    path('etudiant/', views.EtudiantAPI),
+    path('etudiant/([0-9]+)', views.EtudiantAPI),
+    path('enseignant/', views.EnseignantAPI),
+    path('groupe/', views.GroupeAPI),
+    path('seance/', views.SeanceAPI),
+    path('module/', views.ModuleAPI),
+    path('absence/', views.AbsenceAPI),
+    path('enreg/', views.EnregistrementAPI),
+    path('tar/', views.Trav_A_RendreAPI),
     path('SaveFile/', views.SaveFile),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
