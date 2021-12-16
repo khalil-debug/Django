@@ -2,14 +2,16 @@
 
 from django.contrib.auth.models import Group, User
 from django.db.models import fields
+from django.utils.timezone import override
 from rest_framework import serializers
 from .models import Absence, Enregistrement, Enseignant, Etudiant, Groupe, Module, Seance, trav_a_rendre
 
+@override
 class EtudiantSerializer(serializers.ModelSerializer):
     class Meta:
         model=Etudiant
         fields=('id', 'nom_etudiant', 'prenom', 'date_naissance', 'photo',
-         'adrMail', 'etat', 'situation', 'idGroup','user')
+         'adrMail', 'etat', 'situation', 'idGroup')
 
 class GroupeSerializer(serializers.ModelSerializer):
     class Meta:
@@ -43,7 +45,7 @@ class EnseignantSerializer(serializers.ModelSerializer):
     class Meta:
         model= Enseignant
         fields=('id','nom_enseignant','prenom','mailPers','mailTravail',
-        'du','photo','Ens_Mod','user')
+        'du','photo','Ens_Mod')
 
 class TarSerializer(serializers.ModelSerializer):
     class Meta:

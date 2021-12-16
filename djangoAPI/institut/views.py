@@ -1,8 +1,9 @@
+from typing import Generic
 from django.contrib.auth.models import Permission, PermissionManager
 from django.shortcuts import render
 
 from django.http.response import JsonResponse
-from rest_framework import viewsets, permissions
+from rest_framework import viewsets, permissions, generics
 from django.views.decorators.csrf import csrf_exempt
 from rest_framework.parsers import JSONParser
 from django.core.files.storage import default_storage
@@ -258,19 +259,35 @@ def SaveFile(request):
 
     return JsonResponse(file_name,safe=False)
 
-class UserViewSet(viewsets.ModelViewSet):
-    """
-    API endpoint that allows users to be viewed or edited.
-    """
-    queryset = User.objects.all().order_by('-date_joined')
-    serializer_class = UserSerializer
-    permission_classes = [permissions.IsAuthenticated]
 
+class EtudiantView(generics.CreateAPIView):
+    queryset=Etudiant.objects.all()
+    serializer_class = EtudiantSerializer
 
-class GroupViewSet(viewsets.ModelViewSet):
-    """
-    API endpoint that allows groups to be viewed or edited.
-    """
-    queryset = Group.objects.all()
-    serializer_class = GroupSerializer
-    permission_classes = [permissions.IsAuthenticated]
+class EnseignantView(generics.CreateAPIView):
+    queryset=Enseignant.objects.all()
+    serializer_class = EnseignantSerializer
+
+class GroupeView(generics.CreateAPIView):
+    queryset=Groupe.objects.all()
+    serializer_class = GroupeSerializer
+
+class SeanceView(generics.CreateAPIView):
+    queryset=Seance.objects.all()
+    serializer_class = SeanceSerializer
+
+class ModuleView(generics.CreateAPIView):
+    queryset=Module.objects.all()
+    serializer_class = ModuleSerializer
+
+class AbsenceView(generics.CreateAPIView):
+    queryset=Absence.objects.all()
+    serializer__class = AbsenceSerializer
+
+class EnregView(generics.CreateAPIView):
+    queryset=Enregistrement.objects.all()
+    serializer_class = EnregSerializer
+
+class TarView(generics.CreateAPIView):
+    queryset=trav_a_rendre.objects.all()
+    serializer_class = TarSerializer

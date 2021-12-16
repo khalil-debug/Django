@@ -23,7 +23,7 @@ class Groupe(models.Model):
     
 
 class Etudiant(models.Model):
-    user=models.OneToOneField(User,on_delete=models.CASCADE)
+    
     idGroup = models.ForeignKey(Groupe, on_delete=models.CASCADE)
     nom_etudiant= models.CharField(max_length=50)
     prenom = models.CharField(max_length=50)
@@ -82,7 +82,7 @@ class Enregistrement(models.Model) :
 
 
 class Enseignant(models.Model) :
-    user= models.OneToOneField(User, on_delete=models.CASCADE, default="")
+    
     nom_enseignant = models.CharField(max_length=50)
     prenom = models.CharField(max_length=50)
     mailPers=models.EmailField()
